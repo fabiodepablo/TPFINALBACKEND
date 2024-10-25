@@ -1,0 +1,32 @@
+<!-- src/views/products.handlebars -->
+
+<h1>Productos Disponibles</h1>
+
+<ul>
+    {{#each products}}
+    <li>
+        <strong>Título:</strong> {{this.title}} <br>
+        <strong>Descripción:</strong> {{this.description}} <br>
+        <strong>Precio:</strong> ${{this.price}} <br>
+        <strong>Stock:</strong> {{this.stock}} unidades
+        <br><br>
+        <a href="/api/products/{{this._id}}/edit" class="button">Editar</a> 
+        <form action="/api/products/{{this._id}}?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Eliminar</button>
+        </form>
+    </li>
+    <br>
+    {{/each}}
+</ul>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {{#if hasPrevPage}}
+        <li class="page-item"><a class="page-link" href="{{prevLink}}">Anterior</a></li>
+        {{/if}}
+        <li class="page-item active"><a class="page-link">{{page}}</a></li>
+        {{#if hasNextPage}}
+        <li class="page-item"><a class="page-link" href="{{nextLink}}">Siguiente</a></li>
+        {{/if}}
+    </ul>
+</nav>
